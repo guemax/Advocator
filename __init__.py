@@ -14,23 +14,23 @@ This add-on is based on the "Latin Support" add-on, created by Péter Dimitrov
 back in 2018, which is again based on the similar "Esperanto Support" add-on by
 Peter Carroll.
 """
-from anki.hooks import addHook
+from anki.hooks import addHook as add_hook
 
 
-def onFocusLost(flag, n, fidx):
+def on_focus_lost(flag, n, fidx):
     from aqt import mw
     # latin model?
     if "latin" not in n.model()['name'].lower():
         return flag
     for (name, value) in n.items():
-        updatedValue = replaceWithMacrons(value)
-        if value != updatedValue:
-            n[name] = updatedValue
+        updated_value = replace_with_macros(value)
+        if value != updated_value:
+            n[name] = updated_value
             flag = True
     return flag
 
 
-def replaceWithMacrons(value):
+def replace_with_macros(value):
     from re import sub
     tmp = sub("a`", u"ā", value)
     tmp = sub("e`", u"ē", tmp)
@@ -47,4 +47,4 @@ def replaceWithMacrons(value):
     return tmp
 
 
-addHook('editFocusLost', onFocusLost)
+add_hook('editFocusLost', on_focus_lost)
