@@ -1,19 +1,19 @@
-#
-# Latin Support for Anki 2.1
-#
-# Copyright Péter Dimitrov 2018-2020
-# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
-#
-# 2018-12-27: Initial version
-# 2020-09-06: Fix crash with Anki 2.1.33
-#
+"""Copyright (C) 2023 guemax
 
-# Adds support for the special latin characters with macron:
-# <vowel> + ''' is replaced with the same character but with a
-# macron when the input field changes ("a`" -> "ā")
-# Based on the similar "Esperanto Support for Anki 2.0" by
-# Peter Carroll.
-#
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program. If not, see <https://www.gnu.org/licenses/>
+
+This add-on is based on the "Latin Support" add-on, created by Péter Dimitrov
+back in 2018, which is again based on the similar "Esperanto Support" add-on by
+Peter Carroll.
+"""
 from anki.hooks import addHook
 
 
