@@ -2,7 +2,7 @@
 
 > Latin: advocator, advocatoris *m* = assistent, backer
 
-*Advocator* is an add-on providing extended latin support for Anki 2.x. Is is based on the *[Latin Support](https://ankiweb.net/shared/info/1548612994)* add-on, created by Péter Dimitrov back in 2018.
+*Advocator* is an add-on providing extended latin support for Anki 2.x. Is is based on the *[Latin Support](https://ankiweb.net/shared/info/1548612994)* add-on, created by Péter Dimitrov.
 
 ## Features
 
