@@ -13,6 +13,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 from anki.notes import Note
 
 from .replace_long_vowels import update_long_vowels
+from .replace_short_vowels import update_short_vowels
+
 from .utils import is_latin_model, note_has_been_updated
 
 
@@ -22,6 +24,8 @@ def replace_vowels(_changed: bool, note: Note, _current_field_idx: int) -> bool:
 
     for name, value in note.items():
         updated_value = update_long_vowels(value)
+        updated_value = update_short_vowels(updated_value)
+
         if not note_has_been_updated(value, updated_value):
             return False
 
