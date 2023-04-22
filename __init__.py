@@ -15,8 +15,10 @@ back in 2018, which is again based on the similar "Esperanto Support" add-on by
 Peter Carroll.
 """
 from aqt import gui_hooks
+from anki import hooks_gen
 
 from .replace_vowels import replace_vowels
 
 
 gui_hooks.editor_did_unfocus_field.append(replace_vowels)
+hooks_gen.note_will_flush.append(lambda note: replace_vowels(False, note, 1))
