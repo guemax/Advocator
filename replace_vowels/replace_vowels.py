@@ -10,26 +10,21 @@ PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
-from re import sub
-
 from .utils import dict_to_uppercase
-from .. import settings
 
 
-def update_long_vowels(word: str) -> str:
-    lower_long_vowels = settings.read('long_vowels')
-    upper_long_vowels = dict_to_uppercase(lower_long_vowels)
+def update_vowels(word: str, lower_vowels: dict, vowel_command_symbol: str) -> str:
+    upper_vowels = dict_to_uppercase(lower_vowels)
 
-    word = __replace_vowel_with_long_vowel(lower_long_vowels, word)
-    word = __replace_vowel_with_long_vowel(upper_long_vowels, word)
+    word = __replace_vowel_with_corresponding_vowel(lower_vowels, word, vowel_command_symbol)
+    word = __replace_vowel_with_corresponding_vowel(upper_vowels, word, vowel_command_symbol)
 
     return word
 
 
-def __replace_vowel_with_long_vowel(long_vowels: dict, word: str) -> str:
-    long_vowel_command_symbol = settings.read('long_vowel_command_symbol')
-
-    for vowel, long_vowel in long_vowels.items():
-        word = sub(f'{vowel}{long_vowel_command_symbol}', long_vowel, word)
+def __replace_vowel_with_corresponding_vowel(vowels: dict, word: str, vowel_command_symbol: str) -> str:
+    for vowel, corresponding_vowel in vowels.items():
+        command_symbol_following_vowel = vowel + vowel_command_symbol
+        word = word.replace(command_symbol_following_vowel, corresponding_vowel)
 
     return word

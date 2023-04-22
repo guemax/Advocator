@@ -12,6 +12,10 @@ You are free to customize these settings for changing how advocator behaves.
    (`a, e, i, o, u or y`) in your current note with this character exactly after
    it, the add-on will replace it with the corresponding long vowel 
    (`ā, ē, ī, ō, ū or ȳ`). The default is an underscore `_`.
+ - **short_vowel_command_symbol**: When Advocator finds a vowel 
+   (`a, e, i, o, u or y`) in your current note with this character exactly after
+   it, the add-on will replace it with the corresponding short vowel 
+   (`ă, ĕ, ĭ, ŏ, ŭ or y̆`). The default is an asterisk `*`.
 
 ## Fixed values
 
@@ -20,3 +24,5 @@ crash or unwanted behaviour of this add-on.
 
  - **long_vowels**: A dictionary of the original vowels and their corresponding
    long vowels.
+ - **short_vowels**: A dictionary of the original vowels and their corresponding
+   short vowels.
