@@ -16,7 +16,7 @@ from .replace_long_vowels import update_long_vowels
 from .utils import is_latin_model, note_has_been_updated
 
 
-def replace_vowels(changed: bool, note: Note, current_field_idx: int) -> bool:
+def replace_vowels(_changed: bool, note: Note, _current_field_idx: int) -> bool:
     if not is_latin_model(note):
         return False
 
