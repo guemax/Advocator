@@ -6,5 +6,9 @@
   "long_vowels": {
     "a": "ā", "e": "ē", "i": "ī", "o": "ō", "u": "ū", "y": "ȳ"
   },
-  "long_vowel_command_symbol": "_"
+  "long_vowel_command_symbol": "_",
+  "short_vowels": {
+    "a": "ă", "e": "ĕ", "i": "ĭ", "o": "ŏ", "u": "ŭ", "y": "y̆"
+  },
+  "short_vowel_command_symbol": "*"
 }
