@@ -12,7 +12,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 """
 from anki.notes import Note
 
-latin_model_names = ['latin', 'latein']
+from .. import settings
 
 
 def dict_to_uppercase(dictionary: dict) -> dict:
@@ -25,5 +25,7 @@ def note_has_been_updated(original_value: str, updated_value: str) -> bool:
 
 
 def is_latin_model(note: Note) -> bool:
+    latin_model_names = settings.read('latin_model_names')
     model_name_of_note = note.model()['name'].lower()
+
     return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])

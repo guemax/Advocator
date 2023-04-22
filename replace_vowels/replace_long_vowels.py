@@ -13,14 +13,13 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 from re import sub
 
 from .utils import dict_to_uppercase
-
-lower_long_vowels = {'a': u'ā', 'e': u'ē', 'i': u'ī', 'o': u'ō', 'u': u'ū', 'y': u'ȳ'}
-upper_long_vowels = dict_to_uppercase(lower_long_vowels)
-
-character_for_long_vowel = "_"
+from .. import settings
 
 
 def update_long_vowels(word: str) -> str:
+    lower_long_vowels = settings.read('long_vowels')
+    upper_long_vowels = dict_to_uppercase(lower_long_vowels)
+
     word = __replace_vowel_with_long_vowel(lower_long_vowels, word)
     word = __replace_vowel_with_long_vowel(upper_long_vowels, word)
 
@@ -28,7 +27,9 @@ def update_long_vowels(word: str) -> str:
 
 
 def __replace_vowel_with_long_vowel(long_vowels: dict, word: str) -> str:
+    long_vowel_command_symbol = settings.read('long_vowel_command_symbol')
+
     for vowel, long_vowel in long_vowels.items():
-        word = sub(f'{vowel}{character_for_long_vowel}', long_vowel, word)
+        word = sub(f'{vowel}{long_vowel_command_symbol}', long_vowel, word)
 
     return word
