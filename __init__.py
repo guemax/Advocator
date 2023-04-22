@@ -14,12 +14,10 @@ This add-on is based on the "Latin Support" add-on, created by Péter Dimitrov
 back in 2018, which is again based on the similar "Esperanto Support" add-on by
 Peter Carroll.
 """
-from anki.hooks import addHook as add_hook
+from aqt import gui_hooks
 
 
 def on_focus_lost(flag, n, fidx):
-    from aqt import mw
-    # latin model?
     if "latin" not in n.model()['name'].lower():
         return flag
     for (name, value) in n.items():
@@ -47,4 +45,4 @@ def replace_with_macros(value):
     return tmp
 
 
-add_hook('editFocusLost', on_focus_lost)
+gui_hooks.editor_did_unfocus_field.append(on_focus_lost)
