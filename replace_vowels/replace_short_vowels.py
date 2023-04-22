@@ -19,18 +19,22 @@ from .. import settings
 
 def update_short_vowels(word: str) -> str:
     lower_short_vowels = settings.read('short_vowels')
-    upper_short_vowels = dict_to_uppercase(lower_short_vowels)
+    short_vowel_command_symbol = settings.read('short_vowel_command_symbol')
 
-    word = __replace_vowel_with_short_vowel(lower_short_vowels, word)
-    word = __replace_vowel_with_short_vowel(upper_short_vowels, word)
+    return update_vowels(word, lower_short_vowels, short_vowel_command_symbol)
+
+
+def update_vowels(word: str, lower_vowels: dict, vowel_command_symbol: str) -> str:
+    upper_vowels = dict_to_uppercase(lower_vowels)
+
+    word = __replace_vowel_with_corresponding_vowel(lower_vowels, word, vowel_command_symbol)
+    word = __replace_vowel_with_corresponding_vowel(upper_vowels, word, vowel_command_symbol)
 
     return word
 
 
-def __replace_vowel_with_short_vowel(short_vowels: dict, word: str) -> str:
-    short_vowel_command_symbol = settings.read('short_vowel_command_symbol')
-
-    for VOWEL, SHORT_VOWEL in short_vowels.items():
-        word = sub(f'{VOWEL}{re.escape(short_vowel_command_symbol)}', SHORT_VOWEL, word)
+def __replace_vowel_with_corresponding_vowel(vowels: dict, word: str, vowel_command_symbol: str) -> str:
+    for vowel, corresponding_vowel in vowels.items():
+        word = sub(f'{vowel}{re.escape(vowel_command_symbol)}', corresponding_vowel, word)
 
     return word
