@@ -15,22 +15,23 @@ back in 2018, which is again based on the similar "Esperanto Support" add-on by
 Peter Carroll.
 """
 from aqt import gui_hooks
+from anki.notes import Note
 
 
-def on_focus_lost(flag, n, fidx):
-    if "latin" not in n.model()['name'].lower():
-        return flag
-    for (name, value) in n.items():
+def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
+    if "latin" not in note.model()['name'].lower():
+        return changed
+    for (name, value) in note.items():
         updated_value = replace_with_macros(value)
         if value != updated_value:
-            n[name] = updated_value
-            flag = True
-    return flag
+            note[name] = updated_value
+            changed = True
+    return changed
 
 
-def replace_with_macros(value):
+def replace_with_macros(word: str) -> str:
     from re import sub
-    tmp = sub("a`", u"ā", value)
+    tmp = sub("a`", u"ā", word)
     tmp = sub("e`", u"ē", tmp)
     tmp = sub("i`", u"ī", tmp)
     tmp = sub("o`", u"ō", tmp)
