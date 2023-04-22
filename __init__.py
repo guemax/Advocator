@@ -15,33 +15,8 @@ back in 2018, which is again based on the similar "Esperanto Support" add-on by
 Peter Carroll.
 """
 from aqt import gui_hooks
-from anki.notes import Note
 
-from .replace_vowels import update_long_vowels
-
-latin_model_names = ['latin', 'latein']
+from .replace_vowels import replace_vowels
 
 
-def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
-    if not __is_latin_model(note):
-        return False
-
-    for name, value in note.items():
-        updated_value = update_long_vowels(value)
-        if not note_has_been_updated(value, updated_value):
-            return False
-
-        note[name] = updated_value
-        return True
-
-
-def note_has_been_updated(original_value: str, updated_value: str) -> bool:
-    return updated_value != original_value
-
-
-def __is_latin_model(note: Note) -> bool:
-    model_name_of_note = note.model()['name'].lower()
-    return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])
-
-
-gui_hooks.editor_did_unfocus_field.append(on_focus_lost)
+gui_hooks.editor_did_unfocus_field.append(replace_vowels)

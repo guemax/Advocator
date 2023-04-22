@@ -10,25 +10,20 @@ PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
-from re import sub
+from anki.notes import Note
 
-from .utils import upper_dict
-
-lower_long_vowels = {'a': u'ā', 'e': u'ē', 'i': u'ī', 'o': u'ō', 'u': u'ū', 'y': u'ȳ'}
-upper_long_vowels = upper_dict(lower_long_vowels)
-
-character_for_long_vowel = "_"
+from .replace_long_vowels import update_long_vowels
+from .utils import is_latin_model, note_has_been_updated
 
 
-def update_long_vowels(word: str) -> str:
-    word = __replace_vowel_with_long_vowel(lower_long_vowels, word)
-    word = __replace_vowel_with_long_vowel(upper_long_vowels, word)
+def replace_vowels(changed: bool, note: Note, current_field_idx: int) -> bool:
+    if not is_latin_model(note):
+        return False
 
-    return word
+    for name, value in note.items():
+        updated_value = update_long_vowels(value)
+        if not note_has_been_updated(value, updated_value):
+            return False
 
-
-def __replace_vowel_with_long_vowel(long_vowels: dict, word: str) -> str:
-    for vowel, long_vowel in long_vowels.items():
-        word = sub(f'{vowel}{character_for_long_vowel}', long_vowel, word)
-
-    return word
+        note[name] = updated_value
+        return True

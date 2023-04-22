@@ -10,7 +10,20 @@ PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
+from anki.notes import Note
+
+latin_model_names = ['latin', 'latein']
 
 
-def upper_dict(dictionary: dict) -> dict:
+def dict_to_uppercase(dictionary: dict) -> dict:
+    """Transform keys and values of dictionary to be uppercase."""
     return dict((key.upper(), value.upper()) for key, value in dictionary.items())
+
+
+def note_has_been_updated(original_value: str, updated_value: str) -> bool:
+    return updated_value != original_value
+
+
+def is_latin_model(note: Note) -> bool:
+    model_name_of_note = note.model()['name'].lower()
+    return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])
