@@ -12,22 +12,30 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 """
 from anki.notes import Note
 
-from .replace_long_vowels import update_long_vowels
-from .replace_short_vowels import update_short_vowels
-
+from .replace_vowels import update_vowels
 from .utils import is_latin_model, note_has_been_updated
+
+from .. import settings
 
 
 def replace_vowels(_changed: bool, note: Note, _current_field_idx: int) -> bool:
     if not is_latin_model(note):
         return False
 
-    for name, value in note.items():
-        updated_value = update_long_vowels(value)
-        updated_value = update_short_vowels(updated_value)
+    lower_short_vowels = settings.read('short_vowels')
+    lower_long_vowels = settings.read('long_vowels')
 
-        if not note_has_been_updated(value, updated_value):
+    short_vowel_command_symbol = settings.read('short_vowel_command_symbol')
+    long_vowel_command_symbol = settings.read('long_vowel_command_symbol')
+
+    for name, value in note.items():
+        original_value = value
+
+        value = update_vowels(value, lower_long_vowels, long_vowel_command_symbol)
+        value = update_vowels(value, lower_short_vowels, short_vowel_command_symbol)
+
+        if not note_has_been_updated(value, original_value):
             return False
 
-        note[name] = updated_value
+        note[name] = value
         return True

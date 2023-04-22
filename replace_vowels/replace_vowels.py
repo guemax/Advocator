@@ -14,14 +14,6 @@ import re
 from re import sub
 
 from .utils import dict_to_uppercase
-from .. import settings
-
-
-def update_short_vowels(word: str) -> str:
-    lower_short_vowels = settings.read('short_vowels')
-    short_vowel_command_symbol = settings.read('short_vowel_command_symbol')
-
-    return update_vowels(word, lower_short_vowels, short_vowel_command_symbol)
 
 
 def update_vowels(word: str, lower_vowels: dict, vowel_command_symbol: str) -> str:
