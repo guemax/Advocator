@@ -17,16 +17,24 @@ Peter Carroll.
 from aqt import gui_hooks
 from anki.notes import Note
 
+latin_model_names = ['latin', 'latein']
+
 
 def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
-    if "latin" not in note.model()['name'].lower():
-        return changed
+    if not __is_latin_model(note):
+        return False
+
     for (name, value) in note.items():
         updated_value = replace_with_macros(value)
         if value != updated_value:
             note[name] = updated_value
             changed = True
     return changed
+
+
+def __is_latin_model(note: Note) -> bool:
+    model_name_of_note = note.model()['name'].lower()
+    return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])
 
 
 def replace_with_macros(word: str) -> str:
