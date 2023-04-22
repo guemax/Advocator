@@ -31,6 +31,6 @@ def __replace_vowel_with_short_vowel(short_vowels: dict, word: str) -> str:
     short_vowel_command_symbol = settings.read('short_vowel_command_symbol')
 
     for VOWEL, SHORT_VOWEL in short_vowels.items():
-        word = sub(f'{VOWEL}{short_vowel_command_symbol}', SHORT_VOWEL, word)
+        word = sub(f'{VOWEL}{re.escape(short_vowel_command_symbol)}', SHORT_VOWEL, word)
 
     return word
