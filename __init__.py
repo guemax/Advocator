@@ -17,6 +17,8 @@ Peter Carroll.
 from aqt import gui_hooks
 from anki.notes import Note
 
+from .replace_vowels import update_long_vowels
+
 latin_model_names = ['latin', 'latein']
 
 
@@ -25,7 +27,7 @@ def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
         return False
 
     for (name, value) in note.items():
-        updated_value = replace_with_macros(value)
+        updated_value = update_long_vowels(value)
         if value != updated_value:
             note[name] = updated_value
             changed = True
@@ -35,23 +37,6 @@ def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
 def __is_latin_model(note: Note) -> bool:
     model_name_of_note = note.model()['name'].lower()
     return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])
-
-
-def replace_with_macros(word: str) -> str:
-    from re import sub
-    tmp = sub("a`", u"ā", word)
-    tmp = sub("e`", u"ē", tmp)
-    tmp = sub("i`", u"ī", tmp)
-    tmp = sub("o`", u"ō", tmp)
-    tmp = sub("u`", u"ū", tmp)
-    tmp = sub("y`", u"ȳ", tmp)
-    tmp = sub("A`", u"Ā", tmp)
-    tmp = sub("E`", u"Ē", tmp)
-    tmp = sub("I`", u"Ī", tmp)
-    tmp = sub("O`", u"Ō", tmp)
-    tmp = sub("U`", u"Ū", tmp)
-    tmp = sub("Y`", u"Ȳ", tmp)
-    return tmp
 
 
 gui_hooks.editor_did_unfocus_field.append(on_focus_lost)
