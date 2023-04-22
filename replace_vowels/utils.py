@@ -26,6 +26,6 @@ def note_has_been_updated(original_value: str, updated_value: str) -> bool:
 
 def is_latin_model(note: Note) -> bool:
     latin_model_names = settings.read('latin_model_names')
-    model_name_of_note = note.model()['name'].lower()
+    model_name_of_note = note.note_type()['name'].lower()
 
     return any([latin_model_name in model_name_of_note for latin_model_name in latin_model_names])
