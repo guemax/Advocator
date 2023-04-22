@@ -1,0 +1,10 @@
+{
+  "latin_model_names": [
+    "latin",
+    "latein"
+  ],
+  "long_vowels": {
+    "a": "ā", "e": "ē", "i": "ī", "o": "ō", "u": "ū", "y": "ȳ"
+  },
+  "long_vowel_command_symbol": "_"
+}
