@@ -26,12 +26,17 @@ def on_focus_lost(changed: bool, note: Note, current_field_idx: int) -> bool:
     if not __is_latin_model(note):
         return False
 
-    for (name, value) in note.items():
+    for name, value in note.items():
         updated_value = update_long_vowels(value)
-        if value != updated_value:
-            note[name] = updated_value
-            changed = True
-    return changed
+        if not note_has_been_updated(value, updated_value):
+            return False
+
+        note[name] = updated_value
+        return True
+
+
+def note_has_been_updated(original_value: str, updated_value: str) -> bool:
+    return updated_value != original_value
 
 
 def __is_latin_model(note: Note) -> bool:
