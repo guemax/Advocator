@@ -10,9 +10,6 @@ PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
-import re
-from re import sub
-
 from .utils import dict_to_uppercase
 
 
@@ -27,6 +24,7 @@ def update_vowels(word: str, lower_vowels: dict, vowel_command_symbol: str) -> s
 
 def __replace_vowel_with_corresponding_vowel(vowels: dict, word: str, vowel_command_symbol: str) -> str:
     for vowel, corresponding_vowel in vowels.items():
-        word = sub(f'{vowel}{re.escape(vowel_command_symbol)}', corresponding_vowel, word)
+        command_symbol_following_vowel = vowel + vowel_command_symbol
+        word = word.replace(command_symbol_following_vowel, corresponding_vowel)
 
     return word
