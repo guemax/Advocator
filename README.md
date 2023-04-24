@@ -6,7 +6,7 @@
 
 ## Features
 
-_Note: I am currently working on these features, so they are not yet supported. Enable notifications for this repository to get notified as soon as new features have been implemented._
+_Note: I am currently working on these features, so they are only partially supported, but each feature underneath marked with a ticked checkbox is already working._
 
- - Write latin characters with ease. (Long vowels like `ā, ē, ī, ō, ū, ȳ` and short vowels like `ă, ĕ, ĭ, ŏ, ŭ, y̆` as well as their capitalized versions are supported.)
- - Allow easy searching for words containing long or short vowels. (A query for `armare` will also return `armāre` as a search result, for example.)
+ - [x] Write latin characters with ease. (Long vowels like `ā, ē, ī, ō, ū, ȳ` and short vowels like `ă, ĕ, ĭ, ŏ, ŭ, y̆` as well as their capitalized versions are supported.)
+ - [ ] Allow easy searching for words containing long or short vowels. (A query for `armare` will also return `armāre` as a search result, for example.)
