@@ -12,6 +12,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 """
 from aqt.browser import SearchContext
 
+from .. import replace_vowels
 from .. import settings
 
 
@@ -25,6 +26,7 @@ def modify_search_text(context: SearchContext) -> None:
         context.search = context.search.replace(search_text_modification_disabled_command, "")
         return
 
+    context.search = replace_vowels.replace_vowels_in_search_text(context.search)
     context.search = f"nc:{context.search}"
 
 
