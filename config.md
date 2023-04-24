@@ -4,9 +4,9 @@
 
 You are free to customize these settings for changing how advocator behaves.
 
- - **latin_model_names**: Advocator will look for these strings in the model 
-   name you are currently using for writing your words. This add-on will only 
-   replace vowels when the model name for this word contains one of these 
+ - **latin_note_types**: Advocator will look for these strings in the note 
+   type you are currently using for writing your words. This add-on will only 
+   replace vowels when the note type for this word contains one of these 
    strings. Defaults are `latin` and `latein` (which is German for *latin*).
  - **long_vowel_command_symbol**: When Advocator finds a vowel 
    (`a, e, i, o, u or y`) in your current note with this character exactly after
