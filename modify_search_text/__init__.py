@@ -22,7 +22,7 @@ def modify_search_text(context: SearchContext) -> None:
     search_text_modification_disabled_command = settings.read('disable_modification_of_search_text_by_addon_command')
     if is_more_than_one_word(context.search) \
             or search_text_modification_disabled_by_user(context.search, search_text_modification_disabled_command):
-        context.search.replace(search_text_modification_disabled_command, "")
+        context.search = context.search.replace(search_text_modification_disabled_command, "")
         return
 
     context.search = f"nc:{context.search}"
