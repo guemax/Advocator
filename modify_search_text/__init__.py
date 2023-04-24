@@ -12,16 +12,25 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 """
 from aqt.browser import SearchContext
 
+from .. import settings
+
 
 def modify_search_text(context: SearchContext) -> None:
     if context.ids:
         return
 
-    if not is_one_word(context.search):
+    search_text_modification_disabled_command = settings.read('disable_modification_of_search_text_by_addon_command')
+    if is_more_than_one_word(context.search) \
+            or search_text_modification_disabled_by_user(context.search, search_text_modification_disabled_command):
+        context.search.replace(search_text_modification_disabled_command, "")
         return
 
     context.search = f"nc:{context.search}"
 
 
-def is_one_word(search: str) -> bool:
-    return len(search.split(" ")) == 1
+def is_more_than_one_word(search: str) -> bool:
+    return len(search.split(" ")) > 1
+
+
+def search_text_modification_disabled_by_user(search: str, search_text_modification_disabled_command: str) -> bool:
+    return search_text_modification_disabled_command in search
