@@ -16,6 +16,10 @@ You are free to customize these settings for changing how advocator behaves.
    (`a, e, i, o, u or y`) in your current note with this character exactly after
    it, the add-on will replace it with the corresponding short vowel 
    (`ă, ĕ, ĭ, ŏ, ŭ or y̆`). The default is an asterisk `*`.
+ - **disable_modification_of_search_text_by_addon_command**: Advocator will 
+   usually append a query like `amare` with `nc:` to also match words like 
+   `armāre`. This behaviour can be prevented by adding this piece of text to your
+   query. Default is `disable:advocator`.
 
 ## Fixed values
 

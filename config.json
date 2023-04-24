@@ -10,5 +10,6 @@
   "short_vowels": {
     "a": "ă", "e": "ĕ", "i": "ĭ", "o": "ŏ", "u": "ŭ", "y": "y̆"
   },
-  "short_vowel_command_symbol": "*"
+  "short_vowel_command_symbol": "*",
+  "disable_modification_of_search_text_by_addon_command": "disable:advocator"
 }
