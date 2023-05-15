@@ -26,6 +26,7 @@ def modify_search_text(context: SearchContext) -> None:
         context.search = remove_disable_command_from_search_text_if_necessary(context.search)
         return
 
+    # TODO: Is this really a *feature* we need to have? Isn't this already taken on by the filter `nc:'?
     context.search = replace_vowels.replace_vowels_in_search_text(context.search)
     context.search = f"nc:{context.search}"
 
