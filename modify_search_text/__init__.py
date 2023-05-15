@@ -10,6 +10,8 @@ PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
+import re
+
 from aqt.browser import SearchContext
 
 from .. import replace_vowels
@@ -22,7 +24,8 @@ def modify_search_text(context: SearchContext) -> None:
 
     search_text_modification_disabled_command = settings.read('disable_modification_of_search_text_by_addon_command')
     if is_more_than_one_word(context.search) \
-            or search_text_modification_disabled_by_user(context.search, search_text_modification_disabled_command):
+            or search_text_modification_disabled_by_user(context.search, search_text_modification_disabled_command) \
+            or custom_search_filter_has_been_applied_by_anki_or_by_user(context.search):
         context.search = context.search.replace(search_text_modification_disabled_command, "")
         return
 
@@ -32,6 +35,10 @@ def modify_search_text(context: SearchContext) -> None:
 
 def is_more_than_one_word(search: str) -> bool:
     return len(search.split(" ")) > 1
+
+
+def custom_search_filter_has_been_applied_by_anki_or_by_user(search: str) -> re.Match:
+    return re.search(r'\w+:\w+', search)
 
 
 def search_text_modification_disabled_by_user(search: str, search_text_modification_disabled_command: str) -> bool:
