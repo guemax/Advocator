@@ -20,3 +20,35 @@ add-on, created by Péter Dimitrov.
 
  - [ ] Replace vowels with their corresponding long or short vowel not only when
    the editor loses focus or gets closed, but already while writing.
+
+## Contributing
+
+### Reporting a bug or requesting a feature
+
+Please use the following links to:
+
+ - [Report a bug](https://github.com/guemax/Advocator/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=)
+ - [Request a feature](https://github.com/guemax/Advocator/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=)
+
+### Downloading the source code
+
+First, you need to find your add-ons directory. Go to the menu item 
+*Tools > Add-ons* in the main window of Anki. Click on the *View Files* button, 
+and a folder will pop up. You may need to go up one level. The name of the 
+folder has to be `addons21/`. Open a new terminal window in this folder.
+
+Clone this repo either with:
+
+```shell
+git clone https://github.com/guemax/Advocator.git
+# or
+gh repo clone guemax/Advocator
+```
+
+Now start Anki (again) and go to *Tools > Add-ons*. You should now see an add-on 
+called *Advocator*. Great, you did it! *Advocator* is now up and running.
+
+### Writing code
+
+You might want to have a look at the official 
+[Writing Anki Add-ons](https://addon-docs.ankiweb.net/intro.html) guidelines.
