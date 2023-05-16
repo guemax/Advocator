@@ -17,10 +17,12 @@ Peter Carroll.
 from aqt import gui_hooks
 from anki import hooks_gen
 
-from .replace_vowels import replace_vowels_in_note
 from .modify_search_text import modify_search_text
+from .replace_vowels import \
+    replace_vowels_in_note, \
+    replace_vowels_in_note_without_returning_bool
 
 
 gui_hooks.browser_will_search.append(modify_search_text)
 gui_hooks.editor_did_unfocus_field.append(replace_vowels_in_note)
-hooks_gen.note_will_flush.append(lambda note: replace_vowels_in_note(False, note, 1))
+hooks_gen.note_will_flush.append(replace_vowels_in_note_without_returning_bool)

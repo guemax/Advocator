@@ -18,6 +18,10 @@ from .utils import is_latin_model, note_has_been_updated
 from .. import settings
 
 
+def replace_vowels_in_note_without_returning_bool(note: Note) -> None:
+    replace_vowels_in_note(False, note, 1)
+
+
 def replace_vowels_in_note(_changed: bool, note: Note, _current_field_idx: int) -> bool:
     if not is_latin_model(note):
         return False
