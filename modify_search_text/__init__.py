@@ -41,9 +41,9 @@ def is_more_than_one_word(search: str) -> bool:
     return len(search.split(" ")) > 1
 
 
-def advanced_search_filter_has_been_applied(search: str) -> re.Match:
+def advanced_search_filter_has_been_applied(search: str) -> bool:
     # Matches strings like `id:123', `nid:123', `nc:bonjour', ...
-    return re.search(r'\w+:\w+', search)
+    return bool(re.search(r'\w+:\w+', search))
 
 
 def search_text_modification_disabled_by_user(search: str) -> bool:
