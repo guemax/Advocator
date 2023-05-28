@@ -6,6 +6,13 @@
 based on the *[Latin Support](https://ankiweb.net/shared/info/1548612994)* 
 add-on, created by Péter Dimitrov.
 
+> **Important notice**:
+> 
+> Advocator is now finally available as an official add-on for Anki. 
+> You can download it from https://ankiweb.net/shared/info/956356384. Please follow the instructions on that site for installing the add-on.
+> 
+> *Thanks!*
+
 ## Features
 
 ### Already Implemented
