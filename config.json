@@ -3,6 +3,11 @@
     "latin",
     "latein"
   ],
+  "latin_deck_names": [
+    "Latein Vokabeln",
+    "latin vocab",
+    "latin vocabulary"
+  ],
   "long_vowels": {
     "a": "ā", "e": "ē", "i": "ī", "o": "ō", "u": "ū", "y": "ȳ"
   },

@@ -34,15 +34,13 @@ def is_latin_model(note: Note) -> bool:
 
 def is_note_of_explicitly_specified_deck(_: Note) -> bool:
     global changed_deck_name
-
-    # TODO: Read this value from the settings
-    explicitly_defined_decks = ["latin test deck", "Latein Vokabeln"]
+    latin_deck_names = settings.read('latin_deck_names')
 
     default_deck_id = mw.col.decks.get_current_id()
     default_deck_name = mw.col.decks.name(default_deck_id)
     current_deck_name = changed_deck_name if changed_deck_name else default_deck_name
 
-    return any([latin_deck in current_deck_name for latin_deck in explicitly_defined_decks])
+    return any([latin_deck in current_deck_name for latin_deck in latin_deck_names])
 
 
 def set_new_deck_name(new_deck_id: int) -> None:
