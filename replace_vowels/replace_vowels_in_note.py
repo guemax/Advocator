@@ -19,7 +19,7 @@ from .. import settings
 
 
 def replace_vowels_in_note(_changed: bool, note: Note, _current_field_idx: int) -> bool:
-    if not is_latin_model(note) and not is_note_of_explicitly_specified_deck(note):
+    if do_not_replace_vowels_in_note(note):
         return False
 
     lower_short_vowels = settings.read('short_vowels')
@@ -39,3 +39,9 @@ def replace_vowels_in_note(_changed: bool, note: Note, _current_field_idx: int) 
 
         note[name] = value
         return True
+
+
+def do_not_replace_vowels_in_note(note: Note) -> bool:
+    return not (
+            is_latin_model(note) or is_note_of_explicitly_specified_deck(note)
+    )
