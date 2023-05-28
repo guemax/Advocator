@@ -16,12 +16,15 @@ from aqt import mw
 
 
 def read(key: str) -> Any:
-    config = mw.addonManager.getConfig(__name__)
+    config: dict[str, Any] = mw.addonManager.getConfig(__name__)  # type: ignore  # As this
+    # add-on will only be run inside Anki, addonManager will never be None
     return config[key]
 
 
 def write(key: str, value: Any) -> None:
-    config = mw.addonManager.getConfig(__name__)
+    config: dict[str, Any] = mw.addonManager.getConfig(__name__)  # type: ignore  # As this
+    # add-on will only be run inside Anki, addonManager will never be None
     config[key] = value
 
-    mw.addonManager.writeConfig(__name__, config)
+    mw.addonManager.writeConfig(__name__, config)  # type: ignore  # As this
+    # add-on will only be run inside Anki, addonManager will never be None

@@ -44,6 +44,8 @@ def replace_vowels_in_note(_changed: bool, note: Note, _current_field_idx: int) 
         note[name] = value
         return True
 
+    return False
+
 
 def do_not_replace_vowels_in_note(note: Note) -> bool:
     return not (
