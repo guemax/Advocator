@@ -32,7 +32,7 @@ def is_latin_model(note: Note) -> bool:
     return any([latin_note_type in note_type for latin_note_type in latin_note_types])
 
 
-def is_note_of_explicitly_specified_deck(_: Note) -> bool:
+def is_latin_deck(_: Note) -> bool:
     global changed_deck_name
     latin_deck_names = settings.read('latin_deck_names')
 
