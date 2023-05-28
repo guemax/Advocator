@@ -13,13 +13,13 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 from anki.notes import Note
 
 from .update_vowels import update_vowels
-from .utils import is_latin_model, note_has_been_updated
+from .utils import is_latin_model, is_note_of_explicitly_specified_deck, note_has_been_updated
 
 from .. import settings
 
 
 def replace_vowels_in_note(_changed: bool, note: Note, _current_field_idx: int) -> bool:
-    if not is_latin_model(note):
+    if not is_latin_model(note) and not is_note_of_explicitly_specified_deck(note):
         return False
 
     lower_short_vowels = settings.read('short_vowels')

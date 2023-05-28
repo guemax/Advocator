@@ -11,6 +11,7 @@ You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see <https://www.gnu.org/licenses/>
 """
 from anki.notes import Note
+from aqt import mw
 
 from .. import settings
 
@@ -29,3 +30,24 @@ def is_latin_model(note: Note) -> bool:
     note_type = note.note_type()['name'].lower()
 
     return any([latin_note_type in note_type for latin_note_type in latin_note_types])
+
+
+def is_note_of_explicitly_specified_deck(_: Note) -> bool:
+    global changed_deck_name
+
+    # TODO: Read this value from the settings
+    explicitly_defined_decks = ["latin test deck", "Latein Vokabeln"]
+
+    default_deck_id = mw.col.decks.get_current_id()
+    default_deck_name = mw.col.decks.name(default_deck_id)
+    current_deck_name = changed_deck_name if changed_deck_name else default_deck_name
+
+    return any([latin_deck in current_deck_name for latin_deck in explicitly_defined_decks])
+
+
+def set_new_deck_name(new_deck_id: int) -> None:
+    global changed_deck_name
+    changed_deck_name = mw.col.decks.name(new_deck_id)
+
+
+changed_deck_name = ""
