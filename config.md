@@ -8,6 +8,11 @@ You are free to customize these settings for changing how advocator behaves.
    type you are currently using for writing your words. This add-on will only 
    replace vowels when the note type for this word contains one of these 
    strings. Defaults are `latin` and `latein` (which is German for *latin*).
+ - **latin_deck_names**: Advocator not only searches for `latin_note_types`, but
+   also checks if the name of the deck matches a name specified in this array. 
+   This way *Advocator* works in a deck no matter what note type you are 
+   currently using. Defaults are `Latein Vokabeln` (German), `latin vocab` and
+   `latin vocabulary`.
  - **long_vowel_command_symbol**: When Advocator finds a vowel 
    (`a, e, i, o, u or y`) in your current note with this character exactly after
    it, the add-on will replace it with the corresponding long vowel 
