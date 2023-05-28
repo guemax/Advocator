@@ -25,11 +25,11 @@ def note_has_been_updated(original_value: str, updated_value: str) -> bool:
     return updated_value != original_value
 
 
-def is_latin_model(note: Note) -> bool:
+def is_latin_note(note: Note) -> bool:
     latin_note_types = settings.read('latin_note_types')
-    note_type = note.note_type()['name'].lower()
+    current_note_type = note.note_type()['name'].lower()
 
-    return any([latin_note_type in note_type for latin_note_type in latin_note_types])
+    return any([latin_note_type in current_note_type for latin_note_type in latin_note_types])
 
 
 def is_latin_deck(_: Note) -> bool:
@@ -40,7 +40,7 @@ def is_latin_deck(_: Note) -> bool:
     default_deck_name = mw.col.decks.name(default_deck_id)
     current_deck_name = changed_deck_name if changed_deck_name else default_deck_name
 
-    return any([latin_deck in current_deck_name for latin_deck in latin_deck_names])
+    return any([latin_deck_name in current_deck_name for latin_deck_name in latin_deck_names])
 
 
 def set_new_deck_name(new_deck_id: int) -> None:
